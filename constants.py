@@ -3,3 +3,14 @@ WINDOW_HEIGHT = 810
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+GREY = (200, 200, 200)
+
+# значки карты
+WALL = 'X'
+BOX = '*'
+TARGET = '.'
+TARGET_FILLED = "o"
+PLAYER = '@'
+SPACE = ' '
+
+SPRITESIZE = 32
