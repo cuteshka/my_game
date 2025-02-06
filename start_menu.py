@@ -3,7 +3,7 @@ import constants as SOKOBAN
 from game import Game
 
 
-class Menu:
+class StartMenu:
     def __init__(self):
         # загружаем фон стартового окна
         self.image = pygame.image.load('data/Картинки/start_pict.png').convert_alpha()

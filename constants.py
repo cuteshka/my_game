@@ -13,4 +13,11 @@ TARGET_FILLED = "o"
 PLAYER = '@'
 SPACE = ' '
 
+# Направления
+UP = 100
+DOWN = 101
+LEFT = 102
+RIGHT = 103
+
+# Размер картинок
 SPRITESIZE = 32

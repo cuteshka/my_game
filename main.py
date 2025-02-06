@@ -3,7 +3,7 @@ from pygame.locals import *
 
 import constants as SOKOBAN
 from game import Game
-from menu import Menu
+from start_menu import StartMenu
 
 
 def main():
@@ -13,7 +13,7 @@ def main():
     pygame.key.set_repeat(100, 100)
     pygame.display.set_caption("Сокобан")
     window = pygame.display.set_mode((SOKOBAN.WINDOW_WIDTH, SOKOBAN.WINDOW_HEIGHT))
-    menu = Menu()
+    menu = StartMenu()
 
     run = True
     while run:
