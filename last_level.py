@@ -29,5 +29,3 @@ class LastLevel:
                 return scores["level"]
         except FileNotFoundError:
             return 1
-
-

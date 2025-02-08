@@ -3,6 +3,7 @@ from pygame.locals import *
 import constants as SOKOBAN
 from copy import deepcopy
 
+
 class Player:
     def __init__(self, level):
         self.pos = level.player_coord
@@ -24,7 +25,8 @@ class Player:
                 # двигаем героя
                 self.pos[0] -= 1
             # если на месте коробка и ее можно подвинуть
-            elif x > 1 and level.structure[y][x - 1] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y][x - 2] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
+            elif x > 1 and level.structure[y][x - 1] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y][
+                x - 2] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
                 # указываем что расположение объектов уровня изменилось и двигаем
                 levelHasChanged = True
                 if level.structure[y][x - 1] == SOKOBAN.TARGET_FILLED:
@@ -45,7 +47,8 @@ class Player:
             self.direction = SOKOBAN.RIGHT
             if level.structure[y][x + 1] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
                 self.pos[0] += 1
-            elif level.structure[y][x + 1] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y][x + 2] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
+            elif level.structure[y][x + 1] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y][x + 2] in [
+                SOKOBAN.SPACE, SOKOBAN.TARGET]:
                 levelHasChanged = True
                 if level.structure[y][x + 1] == SOKOBAN.TARGET_FILLED:
                     level.structure[y][x + 1] = SOKOBAN.TARGET
@@ -65,7 +68,8 @@ class Player:
             self.direction = SOKOBAN.UP
             if y > 0 and level.structure[y - 1][x] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
                 self.pos[1] -= 1
-            elif y > 1 and level.structure[y - 1][x] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y - 2][x] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
+            elif y > 1 and level.structure[y - 1][x] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y - 2][
+                x] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
                 levelHasChanged = True
                 if level.structure[y - 1][x] == SOKOBAN.TARGET_FILLED:
                     level.structure[y - 1][x] = SOKOBAN.TARGET
@@ -85,7 +89,8 @@ class Player:
             self.direction = SOKOBAN.DOWN
             if level.structure[y + 1][x] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
                 self.pos[1] += 1
-            elif level.structure[y + 1][x] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y + 2][x] in [SOKOBAN.SPACE, SOKOBAN.TARGET]:
+            elif level.structure[y + 1][x] in [SOKOBAN.BOX, SOKOBAN.TARGET_FILLED] and level.structure[y + 2][x] in [
+                SOKOBAN.SPACE, SOKOBAN.TARGET]:
                 levelHasChanged = True
                 if level.structure[y + 1][x] == SOKOBAN.TARGET_FILLED:
                     level.structure[y + 1][x] = SOKOBAN.TARGET
@@ -119,4 +124,5 @@ class Player:
             top = SOKOBAN.SPRITESIZE * 3 + 4
 
         areaPlayer = pygame.Rect((0, top), (32, 32))
-        window.blit(textures[SOKOBAN.PLAYER], (self.pos[0] * SOKOBAN.SPRITESIZE, self.pos[1] * SOKOBAN.SPRITESIZE), area=areaPlayer)
+        window.blit(textures[SOKOBAN.PLAYER], (self.pos[0] * SOKOBAN.SPRITESIZE, self.pos[1] * SOKOBAN.SPRITESIZE),
+                    area=areaPlayer)

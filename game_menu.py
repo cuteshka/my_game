@@ -1,6 +1,7 @@
 import pygame
 import constants as SOKOBAN
 
+
 class GameMenu:
     def __init__(self, player, level):
         self.player = player
@@ -20,13 +21,13 @@ class GameMenu:
 
         # обрабатываем клик на отмену хода
         if x > self.posTxtCancel[0] and x < self.posTxtCancel[0] + self.txtCancelSurface.get_width() \
-         and y > self.posTxtCancel[1] and y < self.posTxtCancel[1] + self.txtCancelSurface.get_height():
+                and y > self.posTxtCancel[1] and y < self.posTxtCancel[1] + self.txtCancelSurface.get_height():
             level.cancel_last_move(self.player, self)
             self.colorTxtCancel = SOKOBAN.GREY
 
         # обрабатываем клик на перезапуск уровня
         if x > self.posTxtReset[0] and x < self.posTxtReset[0] + self.txtResetSurface.get_width() \
-        and y > self.posTxtReset[1] and y < self.posTxtReset[1] + self.txtResetSurface.get_height():
+                and y > self.posTxtReset[1] and y < self.posTxtReset[1] + self.txtResetSurface.get_height():
             game.load_level()
 
     # отображаем текст на экране
