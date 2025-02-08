@@ -23,10 +23,11 @@ def main():
         if event.type == KEYDOWN:
             if event.key == K_s:
                 new_game = Game(window)
+                new_game.last_level.save()
                 new_game.start()
-                print("игра")
             elif event.key == K_c:
-                print("продолжаем")
+                old_game = Game(window)
+                old_game.last_level.load()
             elif event.key == K_l:
                 print("выбор уровня")
             elif event.key == K_ESCAPE:

@@ -1,6 +1,7 @@
 import pygame
 import constants as SOKOBAN
 from game import Game
+from level_menu import LevelMenu
 
 
 class StartMenu:
@@ -23,16 +24,18 @@ class StartMenu:
             0] + self.new_game_txt_surface.get_width() \
                 and y > 130 and y < 130 + self.new_game_txt_surface.get_height():
             new_game = Game(window)
+            new_game.last_level.save()
             new_game.start()
-            print("играем")
         elif x > self.choose_level_txt_position[0] and x < self.choose_level_txt_position[
             0] + self.choose_level_txt_surface.get_width() \
                 and y > 200 and y < 200 + self.choose_level_txt_surface.get_height():
-            print("выбор уровня")
+            l_obj = LevelMenu()
+            l_obj.render(window)
         elif x > self.continue_game_txt_position[0] and x < self.continue_game_txt_position[
             0] + self.continue_game_txt_surface.get_width() \
                 and y > 270 and y < 270 + self.continue_game_txt_surface.get_height():
-            print("продолжаем")
+            old_game = Game(window)
+            old_game.last_level.load()
         elif x > self.quit_game_txt_position[0] and x < self.quit_game_txt_position[
             0] + self.quit_game_txt_surface.get_width() \
                 and y > 340 and y < 340 + self.quit_game_txt_surface.get_height():
