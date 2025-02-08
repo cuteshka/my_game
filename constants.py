@@ -4,6 +4,8 @@ WINDOW_HEIGHT = 810
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREY = (200, 200, 200)
+GREEN = (49, 109, 75)
+RED = (255, 0, 0)
 
 # значки карты
 WALL = 'X'
@@ -24,3 +26,5 @@ SPRITESIZE = 32
 
 # шаг между строками уровней
 LINESTEP = 70
+
+NUMBER_OF_LEVELS = 6

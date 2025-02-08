@@ -14,10 +14,10 @@ class Game:
         self.player = None
         self.index_level = 1
         self.play = True
+        self.end = False
         self.load_level()
         self.last_level = LastLevel(self)
         self.game_menu = GameMenu(self.player, self.level)
-
 
     # загружаем картинки для отрисовки в словарь
     def load_textures(self):
@@ -40,13 +40,15 @@ class Game:
             else:
                 self.player = Player(self.level)
         else:
-            self.play = False
+            self.end = True
 
     def start(self):
-        while True:
+        while self.play:
             self.process_event(pygame.event.wait())
-            self.update_screen()
-
+            if self.end:
+                self.end_screen()
+            else:
+                self.update_screen()
 
     # обрабатываем действия игрока
     def process_event(self, event):
@@ -63,10 +65,12 @@ class Game:
                 # двигаем героя
                 self.player.move(event.key, self.level, self.game_menu)
                 # если выиграл, переходим к следующему уровню
-                if self.has_win():
+                if self.has_win() and self.index_level < SOKOBAN.NUMBER_OF_LEVELS:
                     self.index_level += 1
                     self.last_level.save()
                     self.load_level()
+                elif self.has_win():
+                    self.end = True
             # перезапуск уровня
             if event.key == K_r:
                 self.load_level()
@@ -77,11 +81,10 @@ class Game:
         if event.type == MOUSEBUTTONUP and self.play:
             self.game_menu.click(event.pos, self.level, self)
 
-
     def update_screen(self):
         if self.play:
             pygame.draw.rect(self.board, SOKOBAN.WHITE,
-                         (0, 0, self.level.width * SOKOBAN.SPRITESIZE, self.level.height * SOKOBAN.SPRITESIZE))
+                             (0, 0, self.level.width * SOKOBAN.SPRITESIZE, self.level.height * SOKOBAN.SPRITESIZE))
             pygame.draw.rect(self.window, SOKOBAN.WHITE, (0, 0, SOKOBAN.WINDOW_WIDTH, SOKOBAN.WINDOW_HEIGHT))
 
             self.level.render(self.board, self.textures)
@@ -92,14 +95,16 @@ class Game:
             self.window.blit(self.board, (pox_x_board, pos_y_board))
 
             self.game_menu.render(self.window, self.index_level)
-        else:
-            self.txt = "Продолжение следует...."
-            self.font = pygame.font.Font('data/Шрифты/FreeSansBold.ttf', 30)
-            self.image = pygame.image.load('data/Картинки/end_pict.png').convert_alpha()
-            self.window.blit(self.image, (0, -130))
-            self.txt_surface = self.font.render(self.txt, True, SOKOBAN.BLACK, SOKOBAN.WHITE)
-            self.txt_position = (40, 200)
-            self.window.blit(self.txt_surface, self.txt_position)
+            pygame.display.flip()
+
+    def end_screen(self):
+        self.txt = "Продолжение следует...."
+        self.font = pygame.font.Font('data/Шрифты/FreeSansBold.ttf', 30)
+        self.image = pygame.image.load('data/Картинки/end_pict.png').convert_alpha()
+        self.window.blit(self.image, (0, -130))
+        self.txt_surface = self.font.render(self.txt, True, SOKOBAN.BLACK, SOKOBAN.WHITE)
+        self.txt_position = (40, 200)
+        self.window.blit(self.txt_surface, self.txt_position)
         pygame.display.flip()
 
     # проверка на завершение уровня

@@ -29,8 +29,7 @@ class StartMenu:
         elif x > self.choose_level_txt_position[0] and x < self.choose_level_txt_position[
             0] + self.choose_level_txt_surface.get_width() \
                 and y > 200 and y < 200 + self.choose_level_txt_surface.get_height():
-            l_obj = LevelMenu()
-            l_obj.render(window)
+            LevelMenu(window)
         elif x > self.continue_game_txt_position[0] and x < self.continue_game_txt_position[
             0] + self.continue_game_txt_surface.get_width() \
                 and y > 270 and y < 270 + self.continue_game_txt_surface.get_height():
@@ -57,11 +56,12 @@ class StartMenu:
 
         self.choose_level_txt_surface = self.font.render(self.choose_level_txt, True, SOKOBAN.BLACK, SOKOBAN.WHITE)
         self.choose_level_txt_position = (
-        (SOKOBAN.WINDOW_WIDTH / 4) - (self.choose_level_txt_surface.get_width() / 2), 200)
+            (SOKOBAN.WINDOW_WIDTH / 4) - (self.choose_level_txt_surface.get_width() / 2), 200)
         window.blit(self.choose_level_txt_surface, self.choose_level_txt_position)
 
         self.continue_game_txt_surface = self.font.render(self.continue_game_txt, True, SOKOBAN.BLACK, SOKOBAN.WHITE)
-        self.continue_game_txt_position = ((SOKOBAN.WINDOW_WIDTH / 4) - (self.continue_game_txt_surface.get_width() / 2), 270)
+        self.continue_game_txt_position = (
+        (SOKOBAN.WINDOW_WIDTH / 4) - (self.continue_game_txt_surface.get_width() / 2), 270)
         window.blit(self.continue_game_txt_surface, self.continue_game_txt_position)
 
         self.quit_game_txt_surface = self.font.render(self.quit_game_txt, True, SOKOBAN.BLACK, SOKOBAN.WHITE)

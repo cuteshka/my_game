@@ -3,6 +3,7 @@ from pygame.locals import *
 
 import constants as SOKOBAN
 from game import Game
+from level_menu import LevelMenu
 from start_menu import StartMenu
 
 
@@ -29,7 +30,7 @@ def main():
                 old_game = Game(window)
                 old_game.last_level.load()
             elif event.key == K_l:
-                print("выбор уровня")
+                LevelMenu(window)
             elif event.key == K_ESCAPE:
                 run = False
         if event.type == MOUSEBUTTONUP:
